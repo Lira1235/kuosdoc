@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>製作七夕粿！</title>
+    <style>
+        body {
+            
+            /* 4. 置中對齊 */
+            background-position: center top;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            background-color: #a24731;
+            margin: 0;
+            padding: 20px;
+        } /* 修正閉合括號 */
+
+        /* ==================== 
+           調整：標題一列且置中 
+           ==================== */
+        h1 {
+            text-align: center; /* 讓內容居中 */
+            color: #e99e9d;
+            font-size: 60px; /* 標題字體大小 */
+            margin-top: 40px; /* 增加上方留白 */
+            margin-bottom: 50px;
+            white-space: nowrap; /* 強制文字不換行，維持在一列 */
+            word-break: keep-all; /* 確保中文字詞不被拆開 */
+        }
+
+        /* 設定段落文字大小 */
+        p {
+            text-align: left; /* 讓內容靠左 */
+            font-size: 25px;
+            line-height: 1.6;
+            color: #ffffff; /* 文字顏色 */
+            margin-bottom: 10px;
+        }
+
+        /* 設定圖片樣式 */
+        img {
+            border-radius: 15px; /* 讓圖片圓角 */
+            margin-top: 20px;
+        }
+
+        /* ==================== 
+           漸漸上浮的 CSS 動畫設定 
+           ==================== */
+        .fade-in-section {
+            opacity: 0; /* 預設隱藏 */
+            transform: translateY(50px); /* 預設向下位移 50px */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* 動態過渡時間 */
+            margin-bottom: 60px; /* 每個步驟之間的間距 */
+            will-change: opacity, transform;
+        }
+
+        /* 當滾動到該元素時，由 JavaScript 加上此 Class 觸發動畫 */
+        .fade-in-section.is-visible {
+            opacity: 1; /* 恢復透明度 */
+            transform: translateY(0); /* 回到原位 */
+        }
+    </style>
+</head>
+<body>
+
+   <div class="content">
+    <h1>製作七夕粿！</h1>
+    
+    <!-- 步驟 1 -->
+    <div class="fade-in-section">
+        <p>1.準備粉團：糯米粉加水揉成團，搓圓後用手指壓出中心凹洞。</p>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+            <img src="web1.png" style="width: 50%">
+            <img src="web2.png" style="width: 50%">
+        </div>
+    </div>
+
+    <!-- 步驟 2 -->
+    <div class="fade-in-section">
+        <p>2.水煮：將粉團放入滾水中煮至浮起。</p>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+            <img src="web3.png" style="width: 50%">
+        </div>
+    </div>
+
+    <!-- 步驟 3 -->
+    <div class="fade-in-section">
+        <p>3.製作糖水：糖（白糖、黑糖皆可）加水煮成糖水。</p>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+            <img src="web4.png" style="width: 50%">
+        </div>
+    </div>
+
+    <!-- 步驟 4 -->
+    <div class="fade-in-section">
+        <p>4.組合：將煮好的糖粿放入碗中，淋上糖水即可，也可加花生碎。</p>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+            <img src="web5.png" style="width: 50%">
+        </div>
+    </div>
+
+    <!-- 結尾大圖 -->
+    <div class="fade-in-section">
+        <div style="display: flex; gap: 10px; justify-content: center;">
+            <img src="webb.png" style="width: 100%">
+        </div>
+    </div>
+      
+   </div>
+
+    <!-- ==================== 
+       控制滾動偵測的 JavaScript 
+       ==================== -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            const sections = document.querySelectorAll('.fade-in-section');
+            sections.forEach(sec => observer.observe(sec));
+        });
+    </script>
+</body>
+</html>
